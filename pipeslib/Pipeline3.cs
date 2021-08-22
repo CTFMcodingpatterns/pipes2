@@ -13,21 +13,6 @@ namespace pipeslib
            this.Steps = steps; 
         }
 
-        public DataType Run1(DataType inData) 
-        {
-            //TODO: no inplace data!
-            DataType data = inData;
-            bool doContinue = true;
-            foreach(var step in this.Steps) {
-                if (doContinue) {
-                    var result = step.Process(data);
-                    data = result.data;
-                    doContinue = result.doContinue;
-                }
-            }        
-            return data;
-        }
-
         public DataType Run(DataType dataIn) {
             (DataType data, bool doContinue) seed = (dataIn, true);
             (DataType data, bool doContinue) result = Steps
@@ -38,6 +23,23 @@ namespace pipeslib
                     return handlerResult;
                 });
             return result.data;
+        }
+
+        [Obsolete("mutable data")]
+        public DataType Run2(DataType inData) 
+        {
+            //TODO: no inplace data!
+            DataType data = inData;
+            bool doContinue = true;
+            foreach(var step in this.Steps) {
+                if (doContinue) {
+                    var result = step.Process(data);
+                    data = result.data;
+                    doContinue = result.doContinue;
+                }
+                // break;
+            }        
+            return data;
         }
     }
 }

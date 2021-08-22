@@ -2,12 +2,12 @@ using System;
 
 namespace pipeslib.HandlersCoR
 {
-    public class Handler1 : IHandlerCoR<string>
+    public class HandlerStop : IHandlerCoR<string>
     {
         public (string, bool) Process(string dataIn)
         {
-            string dataOut = $"{dataIn} => handler1";
-            bool doContinue = true;
+            string dataOut = $"{dataIn} => STOP!";
+            bool doContinue = false;
             return (dataOut, doContinue);
         }
     }
