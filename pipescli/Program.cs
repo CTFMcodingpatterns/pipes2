@@ -1,4 +1,5 @@
 ﻿using System;
+using pipeslib;
 using pipeslib.Handlers;
 
 namespace pipescli
@@ -10,7 +11,9 @@ namespace pipescli
             Console.WriteLine("Hello World!");
             Console.WriteLine("hello2");
 
-            Class1 c1 = new Class1();
+            var steps = new IHandler<string>[] {};
+            Pipeline1<string> pipe1 = new Pipeline1<string>(steps);
+            
         }
     }
 }
